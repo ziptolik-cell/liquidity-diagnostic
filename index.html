@@ -8,6 +8,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+h1, h2, h3, h4,
+[class*="font-heading"],
+.hero-eyebrow, .hero-bullet, .section-tag,
+.comparison-col-tag, .comparison-col h3,
+.chart-step-text, .chart-step-num,
+.btn-gradient, .btn-outline, .btn-dark,
+.nav-cta-gradient, .quiz-card-btn,
+.quiz-card-question, .quiz-card-badge,
+.community-card-text, .session-card-title,
+.author-stat-label, .accordion-title,
+.footer-link-pill, .marquee-inner span {
+  word-spacing: 0.15em;
+}
 
 :root {
   --dark: #1A1A1A;
@@ -116,8 +129,8 @@ body {
   letter-spacing: 0.5px;
 }
 .btn-gradient:hover {
-  transform: scale(1.04);
-  box-shadow: 0 8px 32px rgba(131,255,143,0.25), 0 4px 16px rgba(204,127,240,0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(131,255,143,0.25);
 }
 
 .btn-outline {
@@ -140,6 +153,8 @@ body {
 .btn-outline:hover {
   border-color: var(--purple-light);
   background: rgba(175,163,253,0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(175,163,253,0.2);
 }
 
 .btn-dark {
@@ -162,6 +177,7 @@ body {
 .btn-dark:hover {
   background: #2a2a2a;
   transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(131,255,143,0.25);
 }
 
 /* ─── SECTION HELPERS ─── */
@@ -185,6 +201,13 @@ body {
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease, box-shadow 0.3s ease;
+}
+.reveal.visible.btn-gradient:hover,
+.reveal.visible.btn-outline:hover,
+.reveal.visible.btn-dark:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(131,255,143,0.25);
 }
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
@@ -212,6 +235,7 @@ body {
   padding: 16px 56px;
   border-bottom: 1px solid rgba(175,163,253,0.1);
 }
+.nav-logo-svg { height: 48px; width: auto; }
 .nav-logo {
   display: flex;
   align-items: center;
@@ -255,23 +279,33 @@ body {
   color: var(--white);
   text-decoration: none;
   text-transform: uppercase;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
+  opacity: 1;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04);
 }
-.nav-links a:hover { opacity: 1; }
-.nav-cta {
-  background: var(--purple-light);
+.nav-links a:hover {
+  border-color: var(--purple-light);
+  background: rgba(175,163,253,0.1);
+}
+.nav-cta-gradient {
+  background: var(--gradient);
   padding: 12px 24px;
-  border-radius: 16px;
+  border-radius: 24px;
   font-family: var(--font-heading);
   font-weight: 500;
   font-size: 15px;
-  color: var(--dark) !important;
+  color: var(--dark);
+  text-decoration: none;
   text-transform: uppercase;
-  opacity: 1 !important;
-  transition: all 0.3s ease !important;
+  transition: all 0.3s ease;
 }
-.nav-cta:hover { background: var(--purple); transform: translateY(-2px); }
+.nav-cta-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(131,255,143,0.25);
+}
 
 .nav-mobile-toggle {
   display: none;
@@ -441,6 +475,9 @@ body {
   transition: all 0.3s ease;
   cursor: pointer;
   background: rgba(255,255,255,0.03);
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 .quiz-option:hover {
   border-color: var(--purple-light);
@@ -451,6 +488,53 @@ body {
   border-color: var(--green);
   background: rgba(131,255,143,0.08);
   color: var(--white);
+}
+.quiz-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 2px solid rgba(255,255,255,0.15);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.quiz-option:hover .quiz-checkbox {
+  border-color: var(--purple-light);
+}
+.quiz-option.selected .quiz-checkbox {
+  border-color: var(--green);
+  background: var(--green);
+}
+.quiz-checkbox svg {
+  width: 12px;
+  height: 12px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.quiz-option.selected .quiz-checkbox svg {
+  opacity: 1;
+}
+.quiz-card-btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 16px;
+  background: var(--gradient);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.quiz-card-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(131,255,143,0.25);
 }
 .quiz-card-progress {
   display: flex;
@@ -1260,7 +1344,7 @@ body {
    FOOTER
    ═══════════════════════════════════════ */
 .footer {
-  padding: 64px 0 40px;
+  padding: 40px 0 32px;
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 .footer-top {
@@ -1292,6 +1376,17 @@ body {
   max-width: 320px;
   line-height: 1.6;
 }
+.footer-link-pill {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+.footer-link-pill:hover { color: var(--white); }
 .footer-links-group h4 {
   font-family: var(--font-heading);
   font-weight: 500;
@@ -1333,6 +1428,117 @@ body {
   font-size: 12px !important;
   line-height: 1.6 !important;
   color: rgba(255,255,255,0.2) !important;
+}
+
+/* ─── LEGAL DISCLOSURES ─── */
+.legal-disclosures {
+  margin-top: 0;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.legal-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 16px;
+}
+.legal-text strong {
+  color: var(--white);
+  font-weight: 700;
+}
+
+/* ─── ACCORDION ─── */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 32px;
+}
+.accordion-item {
+  background: rgba(255,255,255,0.06);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 12px 12px 16px;
+  cursor: pointer;
+  user-select: none;
+}
+.accordion-header:hover { background: rgba(255,255,255,0.03); }
+.accordion-title {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--white);
+  flex: 1;
+}
+.accordion-date {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  margin-right: 12px;
+  white-space: nowrap;
+}
+.accordion-chevron {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+.accordion-chevron svg {
+  width: 10px;
+  height: 10px;
+}
+.accordion-item.open .accordion-chevron {
+  transform: rotate(180deg);
+}
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.accordion-item.open .accordion-body {
+  max-height: 5000px;
+}
+.accordion-content {
+  padding: 0 16px 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.5);
+}
+.accordion-content h4 {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 14px;
+  margin: 16px 0 4px;
+}
+.accordion-content h4:first-child { margin-top: 8px; }
+.accordion-content p {
+  margin: 4px 0;
+}
+.accordion-content ul {
+  margin: 4px 0;
+  padding-left: 21px;
+}
+.accordion-content ul li {
+  color: var(--white);
+  margin-bottom: 2px;
+}
+.accordion-content .intro {
+  margin-bottom: 12px;
+}
+.footer-copyright {
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin-top: 32px;
 }
 
 /* ═══════════════════════════════════════
@@ -1403,18 +1609,27 @@ body {
 <!-- ═══ NAVIGATION ═══ -->
 <nav class="nav" id="nav">
   <a href="#" class="nav-logo">
-    <div class="nav-logo-icon"><span></span><span></span></div>
-    <div class="nav-logo-text">Liquidity</div>
+    <svg class="nav-logo-svg" width="120" height="49" viewBox="0 0 120 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="logoGrad" x1="0" y1="0" x2="48" y2="49" gradientUnits="userSpaceOnUse">
+          <stop offset="14%" stop-color="#83FF8F"/>
+          <stop offset="100%" stop-color="#CC7FF0"/>
+        </linearGradient>
+      </defs>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.6223 3.8147e-06L0 15.925V33.075L15.6223 49H32.4463L48.0686 33.075L39.6566 24.5L48.0686 15.925L32.4463 3.8147e-06H15.6223ZM15.6223 3.8147e-06L39.6566 24.5L15.6223 49V3.8147e-06Z" fill="url(#logoGrad)"/>
+      <path d="M63.3406 22.4254L59.3469 17.0778V22.4254H56.4531V10.3156H59.3469V15.6288L63.3068 10.3156H66.7082L62.1053 16.2498L66.8774 22.4254H63.3406Z" fill="white"/>
+      <path d="M67.6773 17.5953C67.6773 16.6063 67.8578 15.738 68.2188 14.9905C68.5911 14.243 69.0931 13.668 69.7249 13.2655C70.3567 12.8629 71.0618 12.6617 71.8402 12.6617C72.5059 12.6617 73.0869 12.7997 73.5833 13.0757C74.0909 13.3517 74.4802 13.714 74.7509 14.1625V12.7997H77.6447V22.4254H74.7509V21.0627C74.4689 21.5112 74.074 21.8734 73.5663 22.1494C73.0699 22.4254 72.4889 22.5634 71.8233 22.5634C71.0562 22.5634 70.3567 22.3622 69.7249 21.9597C69.0931 21.5457 68.5911 20.9649 68.2188 20.2174C67.8578 19.4584 67.6773 18.5843 67.6773 17.5953ZM74.7509 17.6126C74.7509 16.8765 74.5478 16.2958 74.1417 15.8703C73.7468 15.4448 73.2617 15.232 72.6864 15.232C72.111 15.232 71.6202 15.4448 71.2141 15.8703C70.8192 16.2843 70.6218 16.8593 70.6218 17.5953C70.6218 18.3313 70.8192 18.9178 71.2141 19.3549C71.6202 19.7804 72.111 19.9931 72.6864 19.9931C73.2617 19.9931 73.7468 19.7804 74.1417 19.3549C74.5478 18.9293 74.7509 18.3486 74.7509 17.6126Z" fill="white"/>
+      <path d="M82.6319 14.404C82.9704 13.875 83.3935 13.461 83.9011 13.1619C84.4088 12.8514 84.9729 12.6962 85.5934 12.6962V15.8185H84.798C84.076 15.8185 83.5345 15.9795 83.1735 16.3015C82.8124 16.612 82.6319 17.1641 82.6319 17.9576V22.4254H79.7382V12.7997H82.6319V14.404Z" fill="white"/>
+      <path d="M86.4012 17.5953C86.4012 16.6063 86.5817 15.738 86.9427 14.9905C87.315 14.243 87.817 13.668 88.4488 13.2655C89.0806 12.8629 89.7857 12.6617 90.5641 12.6617C91.2297 12.6617 91.8107 12.7997 92.3071 13.0757C92.8148 13.3517 93.204 13.714 93.4748 14.1625V12.7997H96.3686V22.4254H93.4748V21.0627C93.1928 21.5112 92.7979 21.8734 92.2902 22.1494C91.7938 22.4254 91.2128 22.5634 90.5472 22.5634C89.78 22.5634 89.0806 22.3622 88.4488 21.9597C87.817 21.5457 87.315 20.9649 86.9427 20.2174C86.5817 19.4584 86.4012 18.5843 86.4012 17.5953ZM93.4748 17.6126C93.4748 16.8765 93.2717 16.2958 92.8656 15.8703C92.4707 15.4448 91.9856 15.232 91.4103 15.232C90.8349 15.232 90.3441 15.4448 89.938 15.8703C89.5431 16.2843 89.3457 16.8593 89.3457 17.5953C89.3457 18.3313 89.5431 18.9178 89.938 19.3549C90.3441 19.7804 90.8349 19.9931 91.4103 19.9931C91.9856 19.9931 92.4707 19.7804 92.8656 19.3549C93.2717 18.9293 93.4748 18.3486 93.4748 17.6126Z" fill="white"/>
+      <path d="M56.4531 32.2286C56.4531 30.9854 56.717 29.8796 57.2447 28.9114C57.7724 27.9311 58.5053 27.1721 59.4435 26.6341C60.3933 26.0843 61.4663 25.8093 62.6625 25.8093C64.1283 25.8093 65.3831 26.2038 66.4268 26.9928C67.4704 27.7817 68.1682 28.8576 68.52 30.2203H65.213C64.9668 29.6944 64.615 29.2939 64.1576 29.019C63.712 28.744 63.2019 28.6065 62.6273 28.6065C61.7009 28.6065 60.9503 28.9353 60.3757 29.5928C59.8011 30.2502 59.5138 31.1288 59.5138 32.2286C59.5138 33.3284 59.8011 34.207 60.3757 34.8645C60.9503 35.5219 61.7009 35.8507 62.6273 35.8507C63.2019 35.8507 63.712 35.7132 64.1576 35.4383C64.615 35.1633 64.9668 34.7629 65.213 34.2369H68.52C68.1682 35.5996 67.4704 36.6755 66.4268 37.4645C65.3831 38.2415 64.1283 38.63 62.6625 38.63C61.4663 38.63 60.3933 38.361 59.4435 37.8231C58.5053 37.2732 57.7724 36.5141 57.2447 35.5458C56.717 34.5776 56.4531 33.4718 56.4531 32.2286Z" fill="white"/>
+      <path d="M74.8299 38.6838C73.8683 38.6838 73.0005 38.4746 72.2266 38.0562C71.4643 37.6378 70.8604 37.0401 70.4148 36.2631C69.9809 35.4861 69.7639 34.5776 69.7639 33.5376C69.7639 32.5095 69.9868 31.607 70.4324 30.83C70.878 30.041 71.4878 29.4373 72.2617 29.019C73.0357 28.6006 73.9035 28.3914 74.8651 28.3914C75.8267 28.3914 76.6945 28.6006 77.4684 29.019C78.2424 29.4373 78.8522 30.041 79.2978 30.83C79.7434 31.607 79.9662 32.5095 79.9662 33.5376C79.9662 34.5656 79.7376 35.4741 79.2802 36.2631C78.8346 37.0401 78.219 37.6378 77.4333 38.0562C76.6593 38.4746 75.7915 38.6838 74.8299 38.6838ZM74.8299 36.03C75.4045 36.03 75.8912 35.8148 76.2899 35.3845C76.7003 34.9541 76.9056 34.3385 76.9056 33.5376C76.9056 32.7367 76.7062 32.121 76.3075 31.6907C75.9205 31.2603 75.4397 31.0452 74.8651 31.0452C74.2788 31.0452 73.7921 31.2603 73.4051 31.6907C73.0181 32.1091 72.8246 32.7247 72.8246 33.5376C72.8246 34.3385 73.0123 34.9541 73.3875 35.3845C73.7745 35.8148 74.2553 36.03 74.8299 36.03Z" fill="white"/>
+      <path d="M91.2542 28.5348V38.5403H88.2463V37.1776C87.9414 37.6199 87.5251 37.9785 86.9974 38.2534C86.4814 38.5164 85.9068 38.6479 85.2735 38.6479C84.523 38.6479 83.8605 38.4805 83.2858 38.1458C82.7112 37.7992 82.2656 37.3031 81.949 36.6576C81.6324 36.012 81.4741 35.253 81.4741 34.3803V28.5348H84.4644V33.9679C84.4644 34.6373 84.6344 35.1573 84.9745 35.5279C85.3146 35.8985 85.7719 36.0838 86.3465 36.0838C86.9329 36.0838 87.3961 35.8985 87.7362 35.5279C88.0762 35.1573 88.2463 34.6373 88.2463 33.9679V28.5348H91.2542Z" fill="white"/>
+      <path d="M96.4227 30.2024C96.7745 29.6525 97.2142 29.2222 97.7419 28.9114C98.2696 28.5886 98.856 28.4272 99.501 28.4272V31.6727H98.6742C97.9237 31.6727 97.3608 31.8401 96.9856 32.1748C96.6103 32.4976 96.4227 33.0714 96.4227 33.8962V38.5403H93.4148V28.5348H96.4227V30.2024Z" fill="white"/>
+      <path d="M104.932 38.6838C104.076 38.6838 103.313 38.5343 102.645 38.2355C101.977 37.9366 101.449 37.5302 101.062 37.0162C100.675 36.4902 100.458 35.9045 100.411 35.2589H103.384C103.419 35.6056 103.577 35.8865 103.859 36.1017C104.14 36.3169 104.486 36.4245 104.896 36.4245C105.272 36.4245 105.559 36.3527 105.758 36.2093C105.969 36.0539 106.075 35.8566 106.075 35.6176C106.075 35.3307 105.928 35.1215 105.635 34.99C105.342 34.8465 104.867 34.6911 104.21 34.5238C103.507 34.3564 102.921 34.1831 102.451 34.0038C101.982 33.8125 101.578 33.5196 101.238 33.1252C100.898 32.7187 100.728 32.1748 100.728 31.4934C100.728 30.9196 100.88 30.3996 101.185 29.9334C101.502 29.4553 101.959 29.0787 102.557 28.8038C103.167 28.5288 103.888 28.3914 104.721 28.3914C105.952 28.3914 106.919 28.7022 107.623 29.3238C108.338 29.9454 108.749 30.7702 108.854 31.7983H106.075C106.028 31.4516 105.876 31.1767 105.618 30.9734C105.371 30.7702 105.043 30.6686 104.633 30.6686C104.281 30.6686 104.011 30.7403 103.823 30.8838C103.636 31.0153 103.542 31.2006 103.542 31.4396C103.542 31.7265 103.689 31.9417 103.982 32.0852C104.287 32.2286 104.756 32.3721 105.389 32.5155C106.116 32.7068 106.708 32.898 107.166 33.0893C107.623 33.2686 108.022 33.5675 108.362 33.9858C108.714 34.3923 108.895 34.9422 108.907 35.6355C108.907 36.2212 108.743 36.7472 108.415 37.2134C108.098 37.6677 107.635 38.0263 107.025 38.2893C106.427 38.5523 105.729 38.6838 104.932 38.6838Z" fill="white"/>
+      <path d="M120 33.3762C120 33.6631 119.982 33.9619 119.947 34.2727H113.14C113.186 34.8943 113.38 35.3725 113.72 35.7072C114.072 36.03 114.5 36.1914 115.004 36.1914C115.755 36.1914 116.276 35.8686 116.57 35.2231H119.771C119.607 35.8806 119.308 36.4723 118.874 36.9983C118.452 37.5242 117.918 37.9366 117.273 38.2355C116.628 38.5343 115.907 38.6838 115.11 38.6838C114.148 38.6838 113.292 38.4746 112.541 38.0562C111.791 37.6378 111.205 37.0401 110.782 36.2631C110.36 35.4861 110.149 34.5776 110.149 33.5376C110.149 32.4976 110.354 31.5891 110.765 30.8121C111.187 30.035 111.773 29.4373 112.524 29.019C113.274 28.6006 114.136 28.3914 115.11 28.3914C116.06 28.3914 116.904 28.5946 117.643 29.001C118.381 29.4075 118.956 29.9872 119.366 30.7403C119.789 31.4934 120 32.3721 120 33.3762ZM116.921 32.5693C116.921 32.0433 116.746 31.6249 116.394 31.3141C116.042 31.0033 115.602 30.8479 115.074 30.8479C114.57 30.8479 114.142 30.9973 113.79 31.2962C113.45 31.595 113.239 32.0194 113.157 32.5693H116.921Z" fill="white"/>
+    </svg>
   </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#insight">Insight</a></li>
-    <li><a href="#session">Session</a></li>
-    <li><a href="#author">About</a></li>
-    <li><a href="#test" class="nav-cta">Start Test</a></li>
-  </ul>
-  <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </button>
+  <a href="#test" class="nav-cta-gradient">Start Test</a>
 </nav>
 
 <!-- ═══ HERO ═══ -->
@@ -1454,7 +1669,6 @@ body {
         </div>
       </div>
       <div class="hero-actions reveal reveal-delay-3">
-        <a href="#test" class="btn-gradient">Begin the Liquidity Test</a>
         <a href="#video" class="btn-outline">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
           See the 2-Min Overview
@@ -1470,11 +1684,12 @@ body {
         </div>
         <p class="quiz-card-question">When price sweeps below a key low and instantly reverses, what just happened?</p>
         <div class="quiz-card-options">
-          <div class="quiz-option">A failed breakdown pattern</div>
-          <div class="quiz-option selected">A liquidity grab targeting stop losses</div>
-          <div class="quiz-option">Random market noise</div>
-          <div class="quiz-option">A trend reversal signal</div>
+          <div class="quiz-option"><span class="quiz-checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="3"><polyline points="20,6 9,17 4,12"/></svg></span>A failed breakdown pattern</div>
+          <div class="quiz-option selected"><span class="quiz-checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="3"><polyline points="20,6 9,17 4,12"/></svg></span>A liquidity grab targeting stop losses</div>
+          <div class="quiz-option"><span class="quiz-checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="3"><polyline points="20,6 9,17 4,12"/></svg></span>Random market noise</div>
+          <div class="quiz-option"><span class="quiz-checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="3"><polyline points="20,6 9,17 4,12"/></svg></span>A trend reversal signal</div>
         </div>
+        <button class="quiz-card-btn">Next Question</button>
         <div class="quiz-card-progress">
           <span class="active"></span>
           <span></span><span></span><span></span>
@@ -1776,38 +1991,173 @@ body {
 <!-- ═══ FOOTER ═══ -->
 <footer class="footer section-dark">
   <div class="container">
-    <div class="footer-top">
-      <div>
-        <a href="#" class="footer-logo">
-          <div class="nav-logo-icon"><span></span><span></span></div>
-          <span class="footer-logo-text">Liquidity</span>
-        </a>
-        <p class="footer-desc">Understanding how capital truly moves through markets — not predictions, not indicators, just clarity.</p>
-      </div>
-      <div class="footer-links-group">
-        <h4>Resources</h4>
-        <a href="#">Live Sessions</a>
-        <a href="#">YouTube Channel</a>
-        <a href="#">Free Diagnostic</a>
-      </div>
-      <div class="footer-links-group">
-        <h4>Community</h4>
-        <a href="#">Telegram</a>
-        <a href="#">Discord</a>
-        <a href="#">Twitter / X</a>
-      </div>
-      <div class="footer-links-group">
-        <h4>Legal</h4>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
+    <div class="footer-top" style="justify-content:space-between;align-items:center;margin-bottom:32px;">
+      <svg width="120" height="49" viewBox="0 0 120 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="logoGradF" x1="0" y1="0" x2="48" y2="49" gradientUnits="userSpaceOnUse"><stop offset="14%" stop-color="#83FF8F"/><stop offset="100%" stop-color="#CC7FF0"/></linearGradient></defs>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.6223 3.8147e-06L0 15.925V33.075L15.6223 49H32.4463L48.0686 33.075L39.6566 24.5L48.0686 15.925L32.4463 3.8147e-06H15.6223ZM15.6223 3.8147e-06L39.6566 24.5L15.6223 49V3.8147e-06Z" fill="url(#logoGradF)"/>
+        <path d="M63.3406 22.4254L59.3469 17.0778V22.4254H56.4531V10.3156H59.3469V15.6288L63.3068 10.3156H66.7082L62.1053 16.2498L66.8774 22.4254H63.3406Z" fill="white"/><path d="M67.6773 17.5953C67.6773 16.6063 67.8578 15.738 68.2188 14.9905C68.5911 14.243 69.0931 13.668 69.7249 13.2655C70.3567 12.8629 71.0618 12.6617 71.8402 12.6617C72.5059 12.6617 73.0869 12.7997 73.5833 13.0757C74.0909 13.3517 74.4802 13.714 74.7509 14.1625V12.7997H77.6447V22.4254H74.7509V21.0627C74.4689 21.5112 74.074 21.8734 73.5663 22.1494C73.0699 22.4254 72.4889 22.5634 71.8233 22.5634C71.0562 22.5634 70.3567 22.3622 69.7249 21.9597C69.0931 21.5457 68.5911 20.9649 68.2188 20.2174C67.8578 19.4584 67.6773 18.5843 67.6773 17.5953ZM74.7509 17.6126C74.7509 16.8765 74.5478 16.2958 74.1417 15.8703C73.7468 15.4448 73.2617 15.232 72.6864 15.232C72.111 15.232 71.6202 15.4448 71.2141 15.8703C70.8192 16.2843 70.6218 16.8593 70.6218 17.5953C70.6218 18.3313 70.8192 18.9178 71.2141 19.3549C71.6202 19.7804 72.111 19.9931 72.6864 19.9931C73.2617 19.9931 73.7468 19.7804 74.1417 19.3549C74.5478 18.9293 74.7509 18.3486 74.7509 17.6126Z" fill="white"/><path d="M82.6319 14.404C82.9704 13.875 83.3935 13.461 83.9011 13.1619C84.4088 12.8514 84.9729 12.6962 85.5934 12.6962V15.8185H84.798C84.076 15.8185 83.5345 15.9795 83.1735 16.3015C82.8124 16.612 82.6319 17.1641 82.6319 17.9576V22.4254H79.7382V12.7997H82.6319V14.404Z" fill="white"/><path d="M86.4012 17.5953C86.4012 16.6063 86.5817 15.738 86.9427 14.9905C87.315 14.243 87.817 13.668 88.4488 13.2655C89.0806 12.8629 89.7857 12.6617 90.5641 12.6617C91.2297 12.6617 91.8107 12.7997 92.3071 13.0757C92.8148 13.3517 93.204 13.714 93.4748 14.1625V12.7997H96.3686V22.4254H93.4748V21.0627C93.1928 21.5112 92.7979 21.8734 92.2902 22.1494C91.7938 22.4254 91.2128 22.5634 90.5472 22.5634C89.78 22.5634 89.0806 22.3622 88.4488 21.9597C87.817 21.5457 87.315 20.9649 86.9427 20.2174C86.5817 19.4584 86.4012 18.5843 86.4012 17.5953ZM93.4748 17.6126C93.4748 16.8765 93.2717 16.2958 92.8656 15.8703C92.4707 15.4448 91.9856 15.232 91.4103 15.232C90.8349 15.232 90.3441 15.4448 89.938 15.8703C89.5431 16.2843 89.3457 16.8593 89.3457 17.5953C89.3457 18.3313 89.5431 18.9178 89.938 19.3549C90.3441 19.7804 90.8349 19.9931 91.4103 19.9931C91.9856 19.9931 92.4707 19.7804 92.8656 19.3549C93.2717 18.9293 93.4748 18.3486 93.4748 17.6126Z" fill="white"/><path d="M56.4531 32.2286C56.4531 30.9854 56.717 29.8796 57.2447 28.9114C57.7724 27.9311 58.5053 27.1721 59.4435 26.6341C60.3933 26.0843 61.4663 25.8093 62.6625 25.8093C64.1283 25.8093 65.3831 26.2038 66.4268 26.9928C67.4704 27.7817 68.1682 28.8576 68.52 30.2203H65.213C64.9668 29.6944 64.615 29.2939 64.1576 29.019C63.712 28.744 63.2019 28.6065 62.6273 28.6065C61.7009 28.6065 60.9503 28.9353 60.3757 29.5928C59.8011 30.2502 59.5138 31.1288 59.5138 32.2286C59.5138 33.3284 59.8011 34.207 60.3757 34.8645C60.9503 35.5219 61.7009 35.8507 62.6273 35.8507C63.2019 35.8507 63.712 35.7132 64.1576 35.4383C64.615 35.1633 64.9668 34.7629 65.213 34.2369H68.52C68.1682 35.5996 67.4704 36.6755 66.4268 37.4645C65.3831 38.2415 64.1283 38.63 62.6625 38.63C61.4663 38.63 60.3933 38.361 59.4435 37.8231C58.5053 37.2732 57.7724 36.5141 57.2447 35.5458C56.717 34.5776 56.4531 33.4718 56.4531 32.2286Z" fill="white"/><path d="M74.8299 38.6838C73.8683 38.6838 73.0005 38.4746 72.2266 38.0562C71.4643 37.6378 70.8604 37.0401 70.4148 36.2631C69.9809 35.4861 69.7639 34.5776 69.7639 33.5376C69.7639 32.5095 69.9868 31.607 70.4324 30.83C70.878 30.041 71.4878 29.4373 72.2617 29.019C73.0357 28.6006 73.9035 28.3914 74.8651 28.3914C75.8267 28.3914 76.6945 28.6006 77.4684 29.019C78.2424 29.4373 78.8522 30.041 79.2978 30.83C79.7434 31.607 79.9662 32.5095 79.9662 33.5376C79.9662 34.5656 79.7376 35.4741 79.2802 36.2631C78.8346 37.0401 78.219 37.6378 77.4333 38.0562C76.6593 38.4746 75.7915 38.6838 74.8299 38.6838ZM74.8299 36.03C75.4045 36.03 75.8912 35.8148 76.2899 35.3845C76.7003 34.9541 76.9056 34.3385 76.9056 33.5376C76.9056 32.7367 76.7062 32.121 76.3075 31.6907C75.9205 31.2603 75.4397 31.0452 74.8651 31.0452C74.2788 31.0452 73.7921 31.2603 73.4051 31.6907C73.0181 32.1091 72.8246 32.7247 72.8246 33.5376C72.8246 34.3385 73.0123 34.9541 73.3875 35.3845C73.7745 35.8148 74.2553 36.03 74.8299 36.03Z" fill="white"/><path d="M91.2542 28.5348V38.5403H88.2463V37.1776C87.9414 37.6199 87.5251 37.9785 86.9974 38.2534C86.4814 38.5164 85.9068 38.6479 85.2735 38.6479C84.523 38.6479 83.8605 38.4805 83.2858 38.1458C82.7112 37.7992 82.2656 37.3031 81.949 36.6576C81.6324 36.012 81.4741 35.253 81.4741 34.3803V28.5348H84.4644V33.9679C84.4644 34.6373 84.6344 35.1573 84.9745 35.5279C85.3146 35.8985 85.7719 36.0838 86.3465 36.0838C86.9329 36.0838 87.3961 35.8985 87.7362 35.5279C88.0762 35.1573 88.2463 34.6373 88.2463 33.9679V28.5348H91.2542Z" fill="white"/><path d="M96.4227 30.2024C96.7745 29.6525 97.2142 29.2222 97.7419 28.9114C98.2696 28.5886 98.856 28.4272 99.501 28.4272V31.6727H98.6742C97.9237 31.6727 97.3608 31.8401 96.9856 32.1748C96.6103 32.4976 96.4227 33.0714 96.4227 33.8962V38.5403H93.4148V28.5348H96.4227V30.2024Z" fill="white"/><path d="M104.932 38.6838C104.076 38.6838 103.313 38.5343 102.645 38.2355C101.977 37.9366 101.449 37.5302 101.062 37.0162C100.675 36.4902 100.458 35.9045 100.411 35.2589H103.384C103.419 35.6056 103.577 35.8865 103.859 36.1017C104.14 36.3169 104.486 36.4245 104.896 36.4245C105.272 36.4245 105.559 36.3527 105.758 36.2093C105.969 36.0539 106.075 35.8566 106.075 35.6176C106.075 35.3307 105.928 35.1215 105.635 34.99C105.342 34.8465 104.867 34.6911 104.21 34.5238C103.507 34.3564 102.921 34.1831 102.451 34.0038C101.982 33.8125 101.578 33.5196 101.238 33.1252C100.898 32.7187 100.728 32.1748 100.728 31.4934C100.728 30.9196 100.88 30.3996 101.185 29.9334C101.502 29.4553 101.959 29.0787 102.557 28.8038C103.167 28.5288 103.888 28.3914 104.721 28.3914C105.952 28.3914 106.919 28.7022 107.623 29.3238C108.338 29.9454 108.749 30.7702 108.854 31.7983H106.075C106.028 31.4516 105.876 31.1767 105.618 30.9734C105.371 30.7702 105.043 30.6686 104.633 30.6686C104.281 30.6686 104.011 30.7403 103.823 30.8838C103.636 31.0153 103.542 31.2006 103.542 31.4396C103.542 31.7265 103.689 31.9417 103.982 32.0852C104.287 32.2286 104.756 32.3721 105.389 32.5155C106.116 32.7068 106.708 32.898 107.166 33.0893C107.623 33.2686 108.022 33.5675 108.362 33.9858C108.714 34.3923 108.895 34.9422 108.907 35.6355C108.907 36.2212 108.743 36.7472 108.415 37.2134C108.098 37.6677 107.635 38.0263 107.025 38.2893C106.427 38.5523 105.729 38.6838 104.932 38.6838Z" fill="white"/><path d="M120 33.3762C120 33.6631 119.982 33.9619 119.947 34.2727H113.14C113.186 34.8943 113.38 35.3725 113.72 35.7072C114.072 36.03 114.5 36.1914 115.004 36.1914C115.755 36.1914 116.276 35.8686 116.57 35.2231H119.771C119.607 35.8806 119.308 36.4723 118.874 36.9983C118.452 37.5242 117.918 37.9366 117.273 38.2355C116.628 38.5343 115.907 38.6838 115.11 38.6838C114.148 38.6838 113.292 38.4746 112.541 38.0562C111.791 37.6378 111.205 37.0401 110.782 36.2631C110.36 35.4861 110.149 34.5776 110.149 33.5376C110.149 32.4976 110.354 31.5891 110.765 30.8121C111.187 30.035 111.773 29.4373 112.524 29.019C113.274 28.6006 114.136 28.3914 115.11 28.3914C116.06 28.3914 116.904 28.5946 117.643 29.001C118.381 29.4075 118.956 29.9872 119.366 30.7403C119.789 31.4934 120 32.3721 120 33.3762ZM116.921 32.5693C116.921 32.0433 116.746 31.6249 116.394 31.3141C116.042 31.0033 115.602 30.8479 115.074 30.8479C114.57 30.8479 114.142 30.9973 113.79 31.2962C113.45 31.595 113.239 32.0194 113.157 32.5693H116.921Z" fill="white"/>
+      </svg>
+      <div style="display:flex;gap:32px;">
+        <a href="#" class="footer-link-pill">Telegram</a>
+        <a href="#" class="footer-link-pill">Discord</a>
+        <a href="#" class="footer-link-pill">Live Sessions</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 Liquidity. All rights reserved.</p>
-      <p class="footer-disclaimer">
-        This content is strictly educational and does not constitute financial advice, investment recommendations, or solicitation to trade. All trading carries inherent risk, including the potential loss of your entire investment. Past performance does not guarantee future results.
-      </p>
+    <!-- Legal Disclosures -->
+    <div class="legal-disclosures">
+      <p class="legal-text"><strong>Risk Disclosure:</strong> The information provided on this website is for educational and informational purposes only and should not be considered as investment advice, financial advice, or a recommendation to engage in any transactions. We do not provide trading signals and do not guarantee any profits. All content reflects the subjective opinions of the author and is intended to help develop market understanding and an analytical approach. Trading cryptocurrencies and other financial instruments involves a high level of risk and may result in partial or total loss of funds. Such activities may not be suitable for all users. Before making any financial decisions, you should carefully assess your own goals, level of experience, and risk tolerance, and seek independent financial advice if necessary. The website owners and authors are not responsible for any losses or consequences resulting from the use of the information provided. We do not provide investment, brokerage, or asset management services.</p>
+
+      <p class="legal-text"><strong>Advertiser Disclosure:</strong> Some links on this website are affiliate links. We may earn a commission if you interact with these services. This comes at no additional cost to you and does not influence our content.</p>
+
+      <p class="legal-text"><strong>Editorial Guidelines:</strong> We follow principles of objectivity, independence, and transparency in all content we produce. Our materials are created for educational and informational purposes only and are not intended as financial advice.</p>
+
+      <p class="legal-text"><strong>Methodology:</strong> Our information and reviews are based on publicly available data, independent market analysis, and the experience of our team. They are provided for informational purposes only.</p>
+
+      <!-- Accordions -->
+      <div class="accordion">
+        <!-- Cookie Policy -->
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-title">Cookie Policy</span>
+            <span class="accordion-date">Last updated: March 2026</span>
+            <span class="accordion-chevron"><svg viewBox="0 0 10 6" fill="none" stroke="white" stroke-width="1.5"><polyline points="1,1 5,5 9,1"/></svg></span>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <p class="intro">This Cookie Policy explains how and why we use cookies and similar technologies on this website.</p>
+              <h4>1. What are cookies</h4>
+              <p>Cookies are small text files stored on your device when you visit a website. They help ensure the site functions properly and improve the overall user experience.</p>
+              <h4>2. Types of cookies we use</h4>
+              <p>We may use the following types of cookies:</p>
+              <ul><li>Essential cookies</li></ul>
+              <p>These are necessary for the proper functioning of the website and cannot be disabled.</p>
+              <ul><li>Analytics cookies</li></ul>
+              <p>These help us understand how users interact with the website (for example, via Google Analytics) so we can improve performance and content.</p>
+              <ul><li>Functional cookies</li></ul>
+              <p>These allow the website to remember your preferences and settings.</p>
+              <ul><li>Marketing cookies</li></ul>
+              <p>These may be used to deliver relevant advertising and measure the effectiveness of our campaigns.</p>
+              <h4>3. Third-party services</h4>
+              <p>We may use third-party services such as:</p>
+              <ul><li>Google Analytics</li><li>advertising networks</li><li>partner platforms</li></ul>
+              <p>These services may set their own cookies in accordance with their respective privacy policies.</p>
+              <h4>4. Managing cookies</h4>
+              <p>You can control and manage cookies in several ways:</p>
+              <ul><li>through your browser settings</li><li>via the cookie consent banner when you first visit the website</li></ul>
+              <p>Please note that disabling cookies may affect the functionality of the site.</p>
+              <h4>5. User consent</h4>
+              <p>By continuing to use this website, you agree to the use of cookies as described in this policy.</p>
+              <h4>6. Updates to this policy</h4>
+              <p>We may update this Cookie Policy from time to time. The latest version will always be available on this page.</p>
+              <h4>7. Contact information</h4>
+              <p>If you have any questions regarding the use of cookies, you can contact us using the contact details provided on the website.</p>
+              <p>We do not collect or process sensitive financial information such as access to user accounts, passwords, or funds.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Privacy Policy -->
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-title">Privacy Policy</span>
+            <span class="accordion-date">Last updated: March 2026</span>
+            <span class="accordion-chevron"><svg viewBox="0 0 10 6" fill="none" stroke="white" stroke-width="1.5"><polyline points="1,1 5,5 9,1"/></svg></span>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <p class="intro">This Privacy Policy explains what data we collect, how we use it, and how we protect it when you use this website.</p>
+              <h4>1. General Information</h4>
+              <p>We respect your privacy and are committed to protecting your personal data in accordance with applicable laws and standards.</p>
+              <p>By using this website, you agree to the terms of this Privacy Policy.</p>
+              <h4>2. Information We Collect</h4>
+              <p>We may collect the following types of data:</p>
+              <p style="color:white">Personal Data:</p>
+              <ul><li style="color:rgba(255,255,255,0.5)">name (if provided)</li><li style="color:rgba(255,255,255,0.5)">email address (for registration or subscriptions)</li></ul>
+              <p style="color:white">Technical Data:</p>
+              <ul><li style="color:rgba(255,255,255,0.5)">IP address</li><li style="color:rgba(255,255,255,0.5)">device and browser type</li><li style="color:rgba(255,255,255,0.5)">information about your interaction with the website</li></ul>
+              <p style="color:white">Analytics Data:</p>
+              <ul><li style="color:rgba(255,255,255,0.5)">user behavior on the site</li><li style="color:rgba(255,255,255,0.5)">traffic sources</li><li style="color:rgba(255,255,255,0.5)">pages visited</li></ul>
+              <h4>3. How We Use Your Data</h4>
+              <p>We use collected data for the following purposes:</p>
+              <ul><li>to ensure proper website functionality</li><li>to improve user experience</li><li>to analyze and optimize content</li><li>to communicate with users (if necessary)</li><li>to maintain security</li></ul>
+              <h4>4. Cookies and Tracking Technologies</h4>
+              <p>We use cookies and similar technologies to:</p>
+              <ul><li>analyze website traffic</li><li>personalize content</li><li>measure advertising performance</li></ul>
+              <p>For more information, please refer to our Cookie Policy.</p>
+              <h4>5. Data Sharing</h4>
+              <p>We may share data with:</p>
+              <ul><li>analytics providers (such as Google Analytics)</li><li>advertising platforms</li><li>partner services</li></ul>
+              <p>We do not sell personal data to third parties.</p>
+              <h4>6. Third-Party Services</h4>
+              <p>This website may contain links to third-party platforms (such as exchanges or other services). We do not control and are not responsible for their privacy practices.</p>
+              <h4>7. Data Security</h4>
+              <p>We take reasonable measures to protect user data. However, we cannot guarantee absolute security of data transmitted over the internet.</p>
+              <h4>8. User Rights</h4>
+              <p>You have the right to:</p>
+              <ul><li>request access to your data</li><li>request deletion of your data</li><li>restrict the processing of your data</li></ul>
+              <p>To exercise these rights, you can contact us using the contact details provided on the website.</p>
+              <h4>9. Data Retention</h4>
+              <p>We retain personal data only for as long as necessary to fulfill the purposes outlined in this Privacy Policy.</p>
+              <h4>10. Policy Updates</h4>
+              <p>We may update this Privacy Policy from time to time. The latest version will always be available on this page.</p>
+              <h4>11. Contact Information</h4>
+              <p>If you have any questions regarding this Privacy Policy, you can contact us using the contact details provided on the website.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Terms of Use -->
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span class="accordion-title">Terms of Use</span>
+            <span class="accordion-date">Last updated: March 2026</span>
+            <span class="accordion-chevron"><svg viewBox="0 0 10 6" fill="none" stroke="white" stroke-width="1.5"><polyline points="1,1 5,5 9,1"/></svg></span>
+          </div>
+          <div class="accordion-body">
+            <div class="accordion-content">
+              <p class="intro">These Terms of Use govern your access to and use of this website. By using the site, you agree to these Terms.</p>
+              <h4>1. General Information</h4>
+              <p>This website provides educational and informational content related to financial market analysis.</p>
+              <p>By accessing or using the website, you acknowledge and agree to these Terms of Use.</p>
+              <h4>2. Nature of Information</h4>
+              <p>All information provided on this website:</p>
+              <ul><li>is for educational and informational purposes only</li><li>does not constitute investment advice</li><li>does not constitute financial advice</li><li>does not constitute a recommendation to engage in any transactions</li></ul>
+              <p>We do not provide trading signals and do not guarantee any profits.</p>
+              <h4>3. User Responsibility</h4>
+              <p>All decisions are made solely by the user, who assumes full responsibility for their actions.</p>
+              <p>We are not responsible for any losses or consequences resulting from the use of information on this website.</p>
+              <h4>4. Limitation of Liability</h4>
+              <p>The website owners and authors:</p>
+              <ul><li>do not guarantee the accuracy, completeness, or timeliness of the information</li><li>are not liable for any direct or indirect losses</li><li>are not responsible for the actions of third parties</li></ul>
+              <h4>5. Third-Party Services</h4>
+              <p>This website may contain links to third-party services (such as exchanges or platforms).</p>
+              <p>By following such links, you:</p>
+              <ul><li>leave this website</li><li>agree to the terms and policies of the respective third-party service</li></ul>
+              <p>We do not control and are not responsible for their operations or content.</p>
+              <h4>6. Affiliate Disclosure</h4>
+              <p>Some links on this website may be affiliate links. We may receive compensation for interactions with these services.</p>
+              <p>This does not affect the cost for the user and does not constitute a recommendation.</p>
+              <h4>7. Intellectual Property</h4>
+              <p>All content on this website, including text, design, and graphics:</p>
+              <ul><li>is protected by intellectual property laws</li><li>may not be copied, reproduced, or distributed without permission</li></ul>
+              <h4>8. Restrictions of Use</h4>
+              <p>You agree not to:</p>
+              <ul><li>use the website for unlawful purposes</li><li>copy or distribute content without authorization</li><li>interfere with the operation of the website</li></ul>
+              <h4>9. Changes to Terms</h4>
+              <p>We reserve the right to modify these Terms at any time. The updated version will always be available on this page.</p>
+              <h4>10. Termination of Access</h4>
+              <p>We may suspend or terminate access to the website without prior notice if these Terms are violated.</p>
+              <h4>11. Governing Law</h4>
+              <p>These Terms are governed by applicable laws.</p>
+              <h4>12. Contact Information</h4>
+              <p>If you have any questions regarding these Terms, you can contact us using the contact details provided on the website.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <p class="footer-copyright">&copy; 2026 KaraCourse</p>
   </div>
 </footer>
 
@@ -1821,9 +2171,11 @@ window.addEventListener('scroll', () => {
 // ─── MOBILE TOGGLE ───
 const mobileToggle = document.getElementById('mobileToggle');
 const navLinks = document.getElementById('navLinks');
-mobileToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-});
+if (mobileToggle && navLinks) {
+  mobileToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+}
 
 // ─── SCROLL REVEAL ───
 const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
@@ -1954,6 +2306,16 @@ document.querySelectorAll('.quiz-option').forEach(opt => {
     opt.classList.add('selected');
   });
 });
+
+// ─── ACCORDION ───
+function toggleAccordion(header) {
+  const item = header.parentElement;
+  const wasOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+  // Toggle clicked
+  if (!wasOpen) item.classList.add('open');
+}
 </script>
 
 </body>
