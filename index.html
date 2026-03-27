@@ -1014,21 +1014,15 @@ body {
 .session-card-avatars {
   display: flex;
 }
-.session-card-avatars span {
+.session-card-avatars img {
   width: 36px;
   height: 36px;
   border-radius: 50%;
   border: 2px solid #242424;
   margin-left: -10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
+  object-fit: cover;
 }
-.session-card-avatars span:first-child { margin-left: 0; }
-.session-card-avatars span:nth-child(1) { background: var(--purple); }
-.session-card-avatars span:nth-child(2) { background: #f4e282; }
-.session-card-avatars span:nth-child(3) { background: var(--green); color: var(--dark); }
+.session-card-avatars img:first-child { margin-left: 0; }
 .session-card-count {
   font-size: 14px;
   color: rgba(255,255,255,0.4);
@@ -1077,20 +1071,16 @@ body {
 .chart-label--accum {
   background: rgba(142,127,240,0.15);
   color: var(--purple);
-  bottom: 40%;
-  left: 8%;
+  bottom: 12%;
+  left: 19%;
+  transform: translateX(-50%);
 }
 .chart-label--expansion {
   background: rgba(131,255,143,0.15);
   color: #2d9a36;
-  top: 15%;
-  right: 15%;
-}
-.chart-label--volume {
-  background: rgba(240,127,229,0.12);
-  color: #c050b0;
-  bottom: 12%;
-  right: 8%;
+  bottom: 42%;
+  left: 75.5%;
+  transform: translateX(-50%);
 }
 .chart-steps {
   display: grid;
@@ -1836,13 +1826,12 @@ body {
       <div class="session-card">
         <div class="session-card-header">
           <div class="session-card-live">Upcoming Live</div>
-          <div class="session-card-date">Next Thursday, 18:00 UTC</div>
         </div>
         <div class="session-card-title">Reading Liquidity Before the Move</div>
         <p class="session-card-desc">How institutional capital leaves footprints in the order book — and how to spot them before everyone else.</p>
         <div class="session-card-attendees">
           <div class="session-card-avatars">
-            <span></span><span></span><span></span>
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt=""><img src="https://randomuser.me/api/portraits/women/44.jpg" alt=""><img src="https://randomuser.me/api/portraits/men/67.jpg" alt="">
           </div>
           <div class="session-card-count">127 registered</div>
         </div>
@@ -1861,8 +1850,7 @@ body {
       <div class="chart-canvas">
         <canvas id="chartCanvas"></canvas>
         <div class="chart-label chart-label--accum">Accumulation</div>
-        <div class="chart-label chart-label--expansion">Expansion</div>
-        <div class="chart-label chart-label--volume">Volume Spike</div>
+        <div class="chart-label chart-label--expansion">Expansion Phase</div>
       </div>
     </div>
 
@@ -1896,10 +1884,7 @@ body {
   <div class="grid-bg"></div>
   <div class="container">
     <div class="author-photo reveal">
-      <div class="author-photo-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg>
-        <span>Author Photo</span>
-      </div>
+      <img src="Img1.png" alt="Author" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;border-radius:40px;">
     </div>
     <div class="author-info">
       <div class="section-tag reveal" style="color:var(--green);">The Person Behind This</div>
@@ -1936,23 +1921,14 @@ body {
     <p class="sub-center reveal reveal-delay-2">Contributing perspectives through keynotes, interviews, and published research worldwide.</p>
 
     <div class="proof-grid">
-      <div class="proof-card reveal">
-        <div class="proof-card-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-        </div>
-        <span class="proof-card-label">Conference Speaker</span>
+      <div class="proof-card reveal" style="padding:0;">
+        <img src="1.png" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:32px;">
       </div>
-      <div class="proof-card reveal reveal-delay-1">
-        <div class="proof-card-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-        </div>
-        <span class="proof-card-label">Published Research</span>
+      <div class="proof-card reveal reveal-delay-1" style="padding:0;">
+        <img src="2.png" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:32px;">
       </div>
-      <div class="proof-card reveal reveal-delay-2">
-        <div class="proof-card-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H3V5h18v12zM16 11l-7 4V7l7 4z"/></svg>
-        </div>
-        <span class="proof-card-label">Media Features</span>
+      <div class="proof-card reveal reveal-delay-2" style="padding:0;">
+        <img src="3.png" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:32px;">
       </div>
     </div>
   </div>
@@ -2242,12 +2218,26 @@ function drawChart() {
   }
 
   // Accumulation zone fill
-  ctx.fillStyle = 'rgba(142,127,240,0.06)';
-  ctx.fillRect(0, h * 0.52, w * 0.35, h * 0.22);
+  ctx.fillStyle = 'rgba(142,127,240,0.18)';
+  ctx.beginPath();
+  ctx.roundRect(w * 0.02, h * 0.42, w * 0.34, h * 0.32, 12);
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(142,127,240,0.45)';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([6, 4]);
+  ctx.stroke();
+  ctx.setLineDash([]);
 
   // Expansion zone fill
-  ctx.fillStyle = 'rgba(131,255,143,0.06)';
-  ctx.fillRect(w * 0.55, 0, w * 0.45, h * 0.4);
+  ctx.fillStyle = 'rgba(131,255,143,0.14)';
+  ctx.beginPath();
+  ctx.roundRect(w * 0.53, h * 0.04, w * 0.45, h * 0.42, 12);
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(131,255,143,0.6)';
+  ctx.lineWidth = 2.5;
+  ctx.setLineDash([6, 4]);
+  ctx.stroke();
+  ctx.setLineDash([]);
 
   // Draw price line
   ctx.beginPath();
@@ -2285,15 +2275,6 @@ function drawChart() {
     ctx.fillRect(x, h - barH, w / 70, barH);
   }
 
-  // Sweep arrow
-  ctx.beginPath();
-  ctx.setLineDash([4, 4]);
-  ctx.moveTo(w * 0.4, h * 0.72);
-  ctx.lineTo(w * 0.4, h * 0.58);
-  ctx.strokeStyle = '#CC7FF0';
-  ctx.lineWidth = 1.5;
-  ctx.stroke();
-  ctx.setLineDash([]);
 }
 
 drawChart();
